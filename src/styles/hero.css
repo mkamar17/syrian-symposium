@@ -1,0 +1,30 @@
+.hero {
+  position: relative;
+  height: 70vh;
+  min-height: 420px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The fade: a dark layer over the photo so the text stands out */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(19, 42, 31, 0.55);
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(3rem, 8vw, 6rem);
+  color: #ffffff;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}

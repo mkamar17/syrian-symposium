@@ -1,0 +1,30 @@
+:root {
+  /* Mockup neutrals */
+  --color-cream: #f4f2ee;
+  --color-ink: #132a1f;
+  --color-sage: #c9dcc6;
+  --color-sage-dark: #a9c5a8;
+
+    /* Syrian flag accents, softened */
+  --color-flag-red: #e6a1a8;
+  --color-flag-green: #a8d5b5;
+  --color-flag-black: #5c5c5c;
+  --color-flag-white: #ffffff;
+
+  /* Type */
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+h1, h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+}
