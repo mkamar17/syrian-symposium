@@ -1,11 +1,21 @@
 :root {
-  /* Mockup neutrals */
+    /* Layout */
+  --gutter: 4rem;
+  --gutter-mobile: 1.5rem;
+  --section-space: 2rem;
+  --section-space-mobile: 3rem;
+
+  /* Neutrals */
   --color-cream: #f4f2ee;
-  --color-ink: #132a1f;
   --color-sage: #c9dcc6;
   --color-sage-dark: #a9c5a8;
+  --color-cream-deep: #dcd5c7;
 
-    /* Syrian flag accents, softened */
+  /* Text colours */
+  --color-green: #13291e;   /* headings and nav */
+  --color-body: #161616;    /* paragraph text */
+
+  /* Syrian flag accents, softened */
   --color-flag-red: #e6a1a8;
   --color-flag-green: #a8d5b5;
   --color-flag-black: #5c5c5c;
@@ -19,12 +29,13 @@
 body {
   margin: 0;
   background: var(--color-cream);
-  color: var(--color-ink);
+  color: var(--color-body);
   font-family: var(--font-body);
 }
 
-h1, h2 {
+h1, h2, h3 {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 500;
+  color: var(--color-green);
 }
