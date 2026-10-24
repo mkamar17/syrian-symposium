@@ -1,0 +1,80 @@
+/* .intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  padding: var(--section-space) var(--gutter);
+  align-items: start;
+  background: var(--color-cream);
+} */
+
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gutter);
+  margin-top: none;
+  padding: var(--section-space) var(--gutter);
+  align-items: start;
+  background: var(--color-cream-deep);
+}
+
+.intro-heading {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  margin: 0;
+}
+
+.intro-body p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-body);
+  margin: 0 0 1.2rem;
+}
+
+.home-speakers {
+  padding: var(--section-space) var(--gutter);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 800px) {
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: var(--section-space-mobile) var(--gutter-mobile);
+  }
+
+  .home-speakers {
+    padding: var(--section-space-mobile) var(--gutter-mobile);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro-heading,
+.intro-body p {
+  animation: slide-in 0.8s ease-out both;
+}
+
+/* Stagger the paragraphs so they arrive one after another */
+.intro-body p:nth-child(1) { animation-delay: 0.2s; }
+.intro-body p:nth-child(2) { animation-delay: 0.35s; }
+.intro-body p:nth-child(3) { animation-delay: 0.5s; }
+.intro-body p:nth-child(4) { animation-delay: 0.65s; }
+.intro-body p:nth-child(5) { animation-delay: 0.8s; }
+
+/* Respect users who have reduced motion turned on */
+@media (prefers-reduced-motion: reduce) {
+  .intro-heading,
+  .intro-body p {
+    animation: none;
+  }
+}
