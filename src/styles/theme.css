@@ -3,8 +3,8 @@
     /* Layout */
   --gutter: 4rem;
   --gutter-mobile: 1.5rem;
-  --section-space: 2rem;
-  --section-space-mobile: 3rem;
+  --section-space: 9rem;
+  --section-space-mobile: 5rem;
 
   /* Neutrals */
   --color-cream: #f4f2ee;
@@ -42,4 +42,8 @@ h1, h2, h3 {
   font-style: italic;
   font-weight: 500;
   color: var(--color-green);
+}
+
+html {
+  scroll-behavior: smooth;
 }
