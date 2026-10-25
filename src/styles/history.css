@@ -1,0 +1,43 @@
+.history {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: var(--section-space, 6rem) 1.5rem;
+  text-align: center;
+}
+
+.history-title {
+  font-family: var(--font-display, serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
+  margin: 0 0 2.5rem;
+}
+
+.history-text {
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  line-height: 1.8;
+  margin: 0 0 1.75rem;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Hidden and lowered until the component is scrolled into view */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Show everything straight away for people who've asked for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
