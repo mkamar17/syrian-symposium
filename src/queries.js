@@ -28,3 +28,12 @@ export const HISTORY_QUERY = `*[_type == "societyHistory"][0] {
     description
   }
 }`
+
+export const INVITATION_QUERY = `*[_type == "invitation"] | order(order asc) {
+  _id,
+  heading,
+  text,
+  image,
+  buttonLabel,
+  buttonLink
+}`
