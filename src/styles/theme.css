@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500;1,700&family=Inter:wght@400;500;600&family=Dancing+Script:wght@500;700&display=swap');
 :root {
     /* Layout */
   --gutter: 4rem;
@@ -10,6 +11,8 @@
   --color-sage: #c9dcc6;
   --color-sage-dark: #a9c5a8;
   --color-cream-deep: #dcd5c7;
+  --color-red-deep: #a8243f;
+  --color-red-tint: #ebdcda;
 
   /* Text colours */
   --color-green: #13291e;   /* headings and nav */
@@ -22,8 +25,9 @@
   --color-flag-white: #ffffff;
 
   /* Type */
-  --font-display: 'Cormorant Garamond', serif;
+    --font-display: 'Cormorant Garamond', serif;
   --font-body: 'Inter', sans-serif;
+  --font-script: 'Dancing Script', cursive;
 }
 
 body {

@@ -4,15 +4,17 @@
   gap: var(--gutter);
   align-items: center;
   padding: var(--section-space) 14%;
-  background: var(--color-cream);
+  background: var(--color-red-tint);
 }
+
+
 
 .invitation-media img {
   display: block;
   width: 80%;
   height: 350px;
-  object-fit: cover;
-  border-radius: 4px;
+  object-fit: fill;
+  border-radius: 5px;
 }
 
 .invitation-heading {

@@ -1,0 +1,160 @@
+.discussion {
+  padding: 10rem var(--gutter);
+  background: var(--color-cream);
+  text-align: center;
+}
+
+.discussion-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Hidden until the section is visible, then each item rises in turn */
+.discussion-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.discussion.is-visible .discussion-item {
+  animation: discussion-rise 0.9s ease-out both;
+}
+
+.discussion-icon {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 1.75rem;
+}
+
+.discussion-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 1000;
+  font-size: 2.2rem;
+  line-height: 1.2;
+  color: var(--color-red-deep);
+  margin: 0 0 1.25rem;
+}
+
+.discussion-text {
+  font-family: var(--font-body);
+  max-width: 360px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-body);
+  margin: 0;
+}
+
+.discussion-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3.5rem;
+}
+
+.discussion-label h2 {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-body);
+  margin: 0 0 0.75rem;
+}
+
+.discussion-label-rule {
+  display: block;
+  width: 48px;
+  height: 1px;
+  background: var(--color-red-deep);
+  opacity: 0.6;
+}
+
+@keyframes discussion-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 800px) {
+  .discussion {
+    padding: 3rem var(--gutter-mobile);
+  }
+
+  .discussion-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .discussion-icon {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discussion-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .discussion.is-visible .discussion-item {
+    animation: none;
+  }
+}
+
+/* Label fades in and blurs into focus, spacing tightening as it settles */
+.discussion.is-visible .discussion-label {
+  animation: label-in 1.6s ease-out 0.2s both;
+}
+
+/* Rule grows from the centre once the label has landed */
+.discussion.is-visible .discussion-label-rule {
+  animation: label-rule-draw 1s ease-out 1.2s forwards;
+}
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    letter-spacing: 0.4em;
+  }
+  to {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: 0.25em;
+  }
+}
+
+@keyframes label-rule-draw {
+  to {
+    width: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .discussion-label {
+    opacity: 1;
+  }
+
+  .discussion.is-visible .discussion-label,
+  .discussion.is-visible .discussion-label-rule {
+    animation: none;
+  }
+
+  .discussion-label-rule {
+    width: 120px;
+  }
+}

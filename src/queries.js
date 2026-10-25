@@ -37,3 +37,13 @@ export const INVITATION_QUERY = `*[_type == "invitation"] | order(order asc) {
   buttonLabel,
   buttonLink
 }`
+
+export const DISCUSSION_SECTION_QUERY = `*[_type == "discussionSection"][0] {
+  heading,
+  points[] {
+    _key,
+    title,
+    text,
+    icon
+  }
+}`
