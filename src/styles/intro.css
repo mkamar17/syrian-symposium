@@ -59,19 +59,21 @@
   }
 }
 
-.intro-heading,
+/* Heading waits for the hero title to finish, then the paragraphs follow */
+.intro-heading {
+  animation: slide-in 0.8s ease-out 1.9s both;
+}
+
 .intro-body p {
   animation: slide-in 0.8s ease-out both;
 }
 
-/* Stagger the paragraphs so they arrive one after another */
-.intro-body p:nth-child(1) { animation-delay: 0.2s; }
-.intro-body p:nth-child(2) { animation-delay: 0.35s; }
-.intro-body p:nth-child(3) { animation-delay: 0.5s; }
-.intro-body p:nth-child(4) { animation-delay: 0.65s; }
-.intro-body p:nth-child(5) { animation-delay: 0.8s; }
+.intro-body p:nth-child(1) { animation-delay: 2.2s; }
+.intro-body p:nth-child(2) { animation-delay: 2.35s; }
+.intro-body p:nth-child(3) { animation-delay: 2.5s; }
+.intro-body p:nth-child(4) { animation-delay: 2.65s; }
+.intro-body p:nth-child(5) { animation-delay: 2.8s; }
 
-/* Respect users who have reduced motion turned on */
 @media (prefers-reduced-motion: reduce) {
   .intro-heading,
   .intro-body p {
