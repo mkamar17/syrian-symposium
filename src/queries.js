@@ -1,8 +1,9 @@
-export const SPEAKERS_QUERY = `*[_type == "speaker"] | order(name asc) {
+export const SPEAKERS_QUERY = `*[_type == "speaker" && confirmed == true] | order(order asc, name asc) {
   _id,
   name,
   role,
-  bio
+  bio,
+  photo
 }`
 
 export const HOME_INTRO_QUERY = `*[_type == "homeIntro"][0] {

@@ -42,9 +42,7 @@ export default function Home() {
       {invitations.map((invitation) => (
         <Invitation key={invitation._id} invitation={invitation} />
       ))}
-      {/* <section className="home-speakers">
-        <Speakers />
-      </section> */}
+      <Speakers />
     </>
   )
 }
