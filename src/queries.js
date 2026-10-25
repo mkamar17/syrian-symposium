@@ -47,3 +47,10 @@ export const DISCUSSION_SECTION_QUERY = `*[_type == "discussionSection"][0] {
     icon
   }
 }`
+
+export const FOOTER_QUERY = `*[_type == "footerSettings"][0] {
+  organisation,
+  address,
+  contactEmail,
+  linkedinUrl
+}`

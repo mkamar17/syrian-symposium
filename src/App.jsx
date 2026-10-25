@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import Home from './pages/Home'
 import History from './pages/History'
 import Committee from './pages/Committee'
@@ -15,6 +16,7 @@ export default function App() {
         <Route path="/committee" element={<Committee />} />
         <Route path="/about" element={<About />} />
       </Routes>
+      <Footer />
     </>
   )
 }
