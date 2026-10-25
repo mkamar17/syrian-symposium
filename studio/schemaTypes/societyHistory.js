@@ -18,10 +18,10 @@ export default {
       of: [{ type: 'text' }],
     },
     {
-      name: 'heroImage',
-      title: 'Conference Speech Image',
-      type: 'image',
-      options: { hotspot: true },
+  name: 'heroImages',
+  title: 'Banner Slideshow Images',
+  type: 'array',
+  of: [{ type: 'image', options: { hotspot: true } }],
     },
     {
       name: 'milestones',
