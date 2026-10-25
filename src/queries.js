@@ -34,7 +34,7 @@ export const INVITATION_QUERY = `*[_type == "invitation"] | order(order asc) {
   _id,
   heading,
   text,
-  image,
+  images,
   buttonLabel,
   buttonLink
 }`

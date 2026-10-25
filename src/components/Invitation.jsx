@@ -21,14 +21,29 @@ export default function Invitation({ invitation }) {
     return () => observer.disconnect()
   }, [])
 
+  const images = invitation.images || []
+
   return (
     <section ref={ref} className={`invitation ${visible ? 'is-visible' : ''}`}>
-      {invitation.image && (
+      {images.length > 0 && (
         <div className="invitation-media">
-          <img
-            src={urlFor(invitation.image).width(1000).height(750).url()}
-            alt={invitation.heading}
-          />
+          <div className="invitation-stack">
+            {images.map((img, i) => (
+              <img
+                key={img._key}
+                className="invitation-stack-img"
+                src={urlFor(img).width(900).url()}
+                alt={img.alt || ''}
+                style={{
+                  '--offset-x': `${i * 40}px`,
+                  '--offset-y': `${i * 30}px`,
+                  '--tilt': `${(i % 2 === 0 ? -1 : 1) * (1 + i)}deg`,
+                  zIndex: i + 1,
+                  animationDelay: `${0.4 + i * 0.6}s`,
+                }}
+              />
+            ))}
+          </div>
         </div>
       )}
 

@@ -15,11 +15,25 @@ export default {
       type: 'text',
       rows: 3,
     },
-    {
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: { hotspot: true },
+        {
+      name: 'images',
+      title: 'Images',
+      type: 'array',
+      description: 'The first photo sits at the back, the last sits on top. Three works best.',
+      validation: (Rule) => Rule.max(4).warning('Four images or fewer works best'),
+      of: [
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              title: 'Description for screen readers',
+              type: 'string',
+            },
+          ],
+        },
+      ],
     },
     {
       name: 'buttonLabel',
