@@ -4,7 +4,7 @@
   gap: var(--gutter);
   align-items: center;
   padding: var(--section-space) 14%;
-  background: var(--color-red-tint);
+  background: var(--color-ink-faded);
 }
 
 /* Stack container matches the old image height */
