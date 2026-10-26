@@ -24,10 +24,16 @@ export default function History() {
   if (error) return <p>Could not load society history. Please try again later.</p>
   if (!history) return <p>Society history has not been added yet.</p>
 
-    return (
+    const heroImage = history.heroImages?.[0]
+
+  return (
     <>
-            {history.heroImages?.length > 0 && (
-        <ImageSlideshow images={history.heroImages} />
+      {heroImage && (
+        <img
+          className="history-banner"
+          src={urlFor(heroImage).width(2000).url()}
+          alt={history.heading || 'Society history'}
+        />
       )}
 
       <section className="history">
@@ -44,4 +50,4 @@ export default function History() {
     </>
   )
 }
-import ImageSlideshow from '../components/ImageSlideshow'
+            
