@@ -18,7 +18,7 @@
 .history-text {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.8;
-  margin: 0 0 1.75rem;
+  margin: 0 0 3.5rem;
   text-align: justify;
   hyphens: auto;
 }
