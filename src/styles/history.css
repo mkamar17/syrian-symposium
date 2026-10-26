@@ -1,7 +1,9 @@
 .history {
-  max-width: 48rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 64rem;
   margin: 0 auto;
-  padding: var(--section-space, 6rem) 1.5rem;
+  padding: var(--section-space, 6rem) clamp(1.5rem, 6vw, 4rem);
   text-align: center;
 }
 
@@ -14,7 +16,7 @@
 }
 
 .history-text {
-  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.8;
   margin: 0 0 1.75rem;
   text-align: justify;
@@ -39,5 +41,19 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+}
+.history-banner {
+  display: block;
+  width: 100vw;
+  height: 320px;
+  margin: 0 calc(50% - 50vw);
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 800px) {
+  .history-banner {
+    height: 220px;
   }
 }
