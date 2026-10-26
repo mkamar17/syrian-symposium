@@ -4,7 +4,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import History from './pages/History'
 import Committee from './pages/Committee'
-import About from './pages/About'
+import Join from './pages/Join'
 
 export default function App() {
   return (
@@ -14,7 +14,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
         <Route path="/committee" element={<Committee />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/join" element={<Join />} />
       </Routes>
       <Footer />
     </>

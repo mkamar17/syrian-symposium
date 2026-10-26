@@ -7,7 +7,7 @@ const links = [
   { to: '/', label: 'Home' },
   { to: '/history', label: 'Society history' },
   { to: '/committee', label: 'Committee' },
-  { to: '/about', label: 'About us' },
+  { to: '/join', label: 'Join us' },
 ]
 
 export default function Navbar() {
