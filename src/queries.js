@@ -55,3 +55,9 @@ export const FOOTER_QUERY = `*[_type == "footerSettings"][0] {
   contactEmail,
   linkedinUrl
 }`
+
+export const EVENT_DETAILS_QUERY = `*[_type == "eventDetails"][0] {
+  host,
+  dates,
+  venue
+}`

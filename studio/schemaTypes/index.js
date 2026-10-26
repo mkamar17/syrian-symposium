@@ -5,5 +5,6 @@ import invitation from './invitation'
 import discussionSection from './discussionSection'
 import footerSettings from './footerSettings'
 import societyHistory from './societyHistory'
+import eventDetails from './eventDetails'
 
-export const schemaTypes = [speaker, homeIntro, highlightCard, invitation, discussionSection, footerSettings, societyHistory]
+export const schemaTypes = [speaker, homeIntro, highlightCard, invitation, discussionSection, footerSettings, societyHistory, eventDetails]
