@@ -1,4 +1,3 @@
-
 export default {
   name: 'societyHistory',
   title: 'Society History',
