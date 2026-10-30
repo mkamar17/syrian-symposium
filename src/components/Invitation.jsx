@@ -23,6 +23,33 @@ export default function Invitation({ invitation }) {
 
   const images = invitation.images || []
 
+  const imagePositions = [
+  { x: '-180px', y: '-50px', tilt: '-4deg' }, // first image
+  { x: '60px', y: '100px', tilt: '4deg' },  // second image
+]
+
+// when the actual pictures come 
+
+// const imagePositions = [
+//   // IMAGE 1
+//   { 
+//     x: '0px', 
+//     y: '20px', 
+//     tilt: '-2deg',
+//     width: '65%',
+//     height: '300px'
+//   },
+
+//   // IMAGE 2 — smaller
+//   { 
+//     x: '220px', 
+//     y: '0px', 
+//     tilt: '2deg',
+//     width: '50%',
+//     height: '240px'
+//   },
+// ]
+
   return (
     <section ref={ref} className={`invitation ${visible ? 'is-visible' : ''}`}>
       {images.length > 0 && (
@@ -35,11 +62,11 @@ export default function Invitation({ invitation }) {
                 src={urlFor(img).width(900).url()}
                 alt={img.alt || ''}
                 style={{
-                  '--offset-x': `${i * 40}px`,
-                  '--offset-y': `${i * 30}px`,
-                  '--tilt': `${(i % 2 === 0 ? -1 : 1) * (1 + i)}deg`,
-                  zIndex: i + 1,
-                  animationDelay: `${0.4 + i * 0.6}s`,
+                    '--offset-x': imagePositions[i]?.x || '0px',
+                    '--offset-y': imagePositions[i]?.y || '0px',
+                    '--tilt': imagePositions[i]?.tilt || '0deg',
+                    zIndex: i + 1,
+                    animationDelay: `${0.4 + i * 0.6}s`,
                 }}
               />
             ))}
