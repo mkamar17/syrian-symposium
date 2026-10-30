@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { client } from '../sanityClient'
 import { SCHEDULE_QUERY } from '../queries'
 import ScrollVelocity from '../components/ScrollVelocity'
@@ -15,18 +15,17 @@ function formatDate(iso) {
   })
 }
 
-function ScheduleDay({ date, items }) {
+// index: this day's position in the list
+// revealedIndex: how many days have been revealed so far
+// onReveal: tells the parent this day has been revealed
+function ScheduleDay({ date, items, index, revealedIndex, onReveal }) {
   const ref = useRef(null)
-  const [visible, setVisible] = useState(false)
+  const [inView, setInView] = useState(false)
 
+  // Track whether the day is on screen right now
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true)
-          observer.disconnect()
-        }
-      },
+      ([entry]) => setInView(entry.isIntersecting),
       { threshold: 0.15 }
     )
 
@@ -34,8 +33,18 @@ function ScheduleDay({ date, items }) {
     return () => observer.disconnect()
   }, [])
 
+  // Reveal only while the day is on screen, and only once the day above is revealed.
+  // If the visitor scrolls away before the timer ends, the timer is cancelled.
+  useEffect(() => {
+    if (!inView || index !== revealedIndex) return
+    const timer = setTimeout(() => onReveal(), 1100)
+    return () => clearTimeout(timer)
+  }, [inView, index, revealedIndex, onReveal])
+
+  const shown = index < revealedIndex
+
   return (
-    <section ref={ref} className={`schedule-day ${visible ? 'is-visible' : ''}`}>
+    <section ref={ref} className={`schedule-day ${shown ? 'is-visible' : ''}`}>
       <div className="schedule-date">{formatDate(date === 'tbc' ? null : date)}</div>
 
       <div className="schedule-sessions">
@@ -66,10 +75,13 @@ function ScheduleDay({ date, items }) {
 export default function Schedule() {
   const [sessions, setSessions] = useState([])
   const [error, setError] = useState(null)
+  const [revealedIndex, setRevealedIndex] = useState(0)
 
   useEffect(() => {
     client.fetch(SCHEDULE_QUERY).then(setSessions).catch((err) => setError(err.message))
   }, [])
+
+  const handleReveal = useCallback(() => setRevealedIndex((i) => i + 1), [])
 
   if (error) return <p>Error: {error}</p>
 
@@ -90,13 +102,20 @@ export default function Schedule() {
           skewWithVelocity={6}
           separator="✦"
           numCopies={4}
-          gap={500}
+          gap={96}
         />
       </div>
 
       <main className="schedule">
-        {Object.entries(days).map(([date, items]) => (
-          <ScheduleDay key={date} date={date} items={items} />
+        {Object.entries(days).map(([date, items], index) => (
+          <ScheduleDay
+            key={date}
+            date={date}
+            items={items}
+            index={index}
+            revealedIndex={revealedIndex}
+            onReveal={handleReveal}
+          />
         ))}
 
         {sessions.length === 0 && <p>Schedule TBC</p>}

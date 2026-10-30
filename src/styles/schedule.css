@@ -51,7 +51,7 @@
 }
 
 .schedule-day.is-visible {
-  animation: schedule-day-from-left 1.1s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: schedule-day-from-left 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .schedule-day:nth-child(even).is-visible {
@@ -59,7 +59,7 @@
 }
 
 .schedule-day.is-visible::before {
-  animation: schedule-rule-draw 1.2s ease-out 0.2s forwards;
+  animation: schedule-rule-draw 1s ease-out 0.2s forwards;
 }
 
 .schedule-date {
@@ -106,6 +106,7 @@
 .session-title {
   font-size: 1.15rem;
   font-weight: 700;
+  color: #06763e;
   line-height: 1.35;
   margin: 0 0 0.9rem;
 }
