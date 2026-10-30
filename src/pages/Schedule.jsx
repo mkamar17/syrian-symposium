@@ -95,7 +95,7 @@ export default function Schedule() {
 
   return (
     <>
-      <div className="schedule-title-band">
+      {/* <div className="schedule-title-band">
         <ScrollVelocity
           texts={['Syrian Symposium Schedule 2027']}
           velocity={30}
@@ -104,7 +104,7 @@ export default function Schedule() {
           numCopies={4}
           gap={400}
         />
-      </div>
+      </div> */}
 
       <main className="schedule">
         {Object.entries(days).map(([date, items], index) => (

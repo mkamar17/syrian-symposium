@@ -6,9 +6,10 @@ import '../styles/navbar.css'
 const links = [
   { to: '/', label: 'Home' },
   { to: '/history', label: 'Society history' },
-  { to: '/committee', label: 'Committee' },
-  { to: '/join', label: 'Join us' },
-  { to: '/schedule', label: 'Schedule'}
+//   { to: '/committee', label: 'Committee' },
+{ to: '/schedule', label: 'Schedule & Speakers'},
+  { to: '/join', label: 'Join us' }
+//   { to: '/schedule', label: 'Schedule & Speakers'}
 ]
 
 export default function Navbar() {
