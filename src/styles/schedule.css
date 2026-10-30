@@ -22,6 +22,30 @@
   color: var(--color-cream);
 }
 
+/* Column titles, aligned with the day and session grids below */
+.schedule-header {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--color-green);
+}
+
+.session-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 2rem;
+}
+
+.column-label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-body);
+  margin: 0;
+}
+
 /* Days alternate sides as they reveal */
 .schedule-day {
   position: relative;
@@ -145,6 +169,10 @@
 }
 
 @media (max-width: 800px) {
+  .schedule-header {
+    display: none;
+  }
+
   .schedule-day {
     grid-template-columns: 1fr;
     gap: 1rem;

@@ -107,6 +107,17 @@ export default function Schedule() {
       </div> */}
 
       <main className="schedule">
+        {sessions.length > 0 && (
+          <div className="schedule-header">
+            <p className="column-label">Date</p>
+            <div className="session-header">
+              <p className="column-label">Session &amp; speakers</p>
+              <p className="column-label">Time</p>
+              <p className="column-label">Venue</p>
+            </div>
+          </div>
+        )}
+
         {Object.entries(days).map(([date, items], index) => (
           <ScheduleDay
             key={date}
