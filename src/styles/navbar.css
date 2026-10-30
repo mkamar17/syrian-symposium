@@ -12,14 +12,14 @@
 
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  gap: 2.5rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .navbar-logo-img {
-  height: 70px;
+  height: 60px;
   width: auto;
   display: block;
 }
@@ -28,7 +28,7 @@
 .navbar-social {
   color: var(--color-green);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 1rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
