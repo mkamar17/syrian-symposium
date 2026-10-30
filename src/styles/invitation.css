@@ -43,6 +43,7 @@
 .invitation-heading {
   font-size: clamp(2rem, 3.5vw, 3rem);
   line-height: 1.15;
+  color:black;
   margin: 0 0 1.25rem;
 }
 

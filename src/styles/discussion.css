@@ -34,7 +34,7 @@
 
 .discussion-title {
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 1000;
   font-size: 2.2rem;
   line-height: 1.2;
@@ -59,12 +59,12 @@
 }
 
 .discussion-label h2 {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
   font-style: normal;
   font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
+  font-size: 4rem;
+  letter-spacing: 0.01em;
+  margin-bottom: 3.5rem;
   color: var(--color-body);
   margin: 0 0 0.75rem;
 }
