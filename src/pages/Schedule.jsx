@@ -102,7 +102,7 @@ export default function Schedule() {
           skewWithVelocity={6}
           separator="✦"
           numCopies={4}
-          gap={96}
+          gap={400}
         />
       </div>
 
