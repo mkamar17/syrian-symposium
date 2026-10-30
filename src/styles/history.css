@@ -3,7 +3,7 @@
   width: 100%;
   max-width: 64rem;
   margin: 0 auto;
-  padding: var(--section-space, 6rem) clamp(1.5rem, 6vw, 4rem);
+  padding: 2.5rem clamp(1.5rem, 6vw, 4rem) var(--section-space, 6rem);
   text-align: center;
 }
 
@@ -18,7 +18,7 @@
 .history-text {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
   line-height: 1.8;
-  margin: 0 0 1.75rem;
+  margin: 0 0 3.5rem;
   text-align: justify;
   hyphens: auto;
 }
@@ -46,7 +46,7 @@
 .history-banner {
   display: block;
   width: 100vw;
-  height: 320px;
+  height: 360px;
   margin: 0 calc(50% - 50vw);
   object-fit: cover;
   object-position: center;
