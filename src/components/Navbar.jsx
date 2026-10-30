@@ -8,6 +8,7 @@ const links = [
   { to: '/history', label: 'Society history' },
   { to: '/committee', label: 'Committee' },
   { to: '/join', label: 'Join us' },
+  { to: '/schedule', label: 'Schedule'}
 ]
 
 export default function Navbar() {

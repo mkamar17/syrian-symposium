@@ -61,3 +61,12 @@ export const EVENT_DETAILS_QUERY = `*[_type == "eventDetails"][0] {
   dates,
   venue
 }`
+
+export const SCHEDULE_QUERY = `*[_type == "session"] | order(date asc, order asc) {
+  _id,
+  title,
+  date,
+  time,
+  venue,
+  speakers[]->{ name, role }
+}`
