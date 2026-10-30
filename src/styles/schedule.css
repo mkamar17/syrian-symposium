@@ -104,8 +104,9 @@
 .schedule-day.is-visible .session:nth-child(6) { animation-delay: 1.3s; }
 
 .session-title {
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 1000;
   color: #06763e;
   line-height: 1.35;
   margin: 0 0 0.9rem;

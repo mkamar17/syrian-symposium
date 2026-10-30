@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaLinkedinIn } from 'react-icons/fa'
-import logo from '../assets/initial_logo.png'
+import logo from '../assets/new-logo.jpg'
 import '../styles/navbar.css'
 
 const links = [
