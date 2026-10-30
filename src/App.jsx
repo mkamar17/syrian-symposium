@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import History from './pages/History'
 import Committee from './pages/Committee'
 import Join from './pages/Join'
+import Schedule from './pages/Schedule'
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
         <Route path="/committee" element={<Committee />} />
-        <Route path="/join" element={<Join />} />
+        <Route path="/schedule" element={<Schedule />} />
+        <Route path="/join" element={<Join />}/>
       </Routes>
       <Footer />
     </>

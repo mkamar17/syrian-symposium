@@ -1,0 +1,180 @@
+.schedule {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--section-space-mobile) var(--gutter) 30rem;
+  font-family: var(--font-body);
+  color: var(--color-green);
+}
+
+/* Title band holding the scrolling heading */
+.schedule-title-band {
+  overflow: hidden;
+  padding: 2.5rem 0;
+  background: #015c2f;
+}
+
+.schedule-title-band .scroller {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 4.5rem;
+  line-height: 1;
+  color: var(--color-cream);
+}
+
+/* Days alternate sides as they reveal */
+.schedule-day {
+  position: relative;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  opacity: 0;
+  transform: translateX(-60px);
+}
+
+.schedule-day:nth-child(even) {
+  transform: translateX(60px);
+}
+
+/* Rule drawn across the top of each day */
+.schedule-day::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--color-green);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.schedule-day.is-visible {
+  animation: schedule-day-from-left 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.schedule-day:nth-child(even).is-visible {
+  animation-name: schedule-day-from-right;
+}
+
+.schedule-day.is-visible::before {
+  animation: schedule-rule-draw 1s ease-out 0.2s forwards;
+}
+
+.schedule-date {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #b71124;
+  line-height: 1.4;
+  align-self: start;
+  opacity: 0;
+  transform: translateX(-20px);
+}
+
+.schedule-day.is-visible .schedule-date {
+  animation: schedule-date-in 0.9s ease-out 0.1s both;
+}
+
+.schedule-sessions {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.session {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.2fr;
+  gap: 2rem;
+  align-items: start;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.schedule-day.is-visible .session {
+  animation: schedule-session-rise 0.8s ease-out both;
+}
+
+/* Each session starts a little after the one above it */
+.schedule-day.is-visible .session:nth-child(1) { animation-delay: 0.3s; }
+.schedule-day.is-visible .session:nth-child(2) { animation-delay: 0.5s; }
+.schedule-day.is-visible .session:nth-child(3) { animation-delay: 0.7s; }
+.schedule-day.is-visible .session:nth-child(4) { animation-delay: 0.9s; }
+.schedule-day.is-visible .session:nth-child(5) { animation-delay: 1.1s; }
+.schedule-day.is-visible .session:nth-child(6) { animation-delay: 1.3s; }
+
+.session-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #06763e;
+  line-height: 1.35;
+  margin: 0 0 0.9rem;
+}
+
+.session-speaker,
+.session-time,
+.session-venue {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+@keyframes schedule-day-from-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes schedule-day-from-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes schedule-rule-draw {
+  to { transform: scaleX(1); }
+}
+
+@keyframes schedule-session-rise {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes schedule-date-in {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 800px) {
+  .schedule-day {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .session {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .schedule {
+    padding-bottom: 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .schedule-day,
+  .schedule-date,
+  .session {
+    opacity: 1;
+    transform: none;
+  }
+
+  .schedule-day::before {
+    transform: scaleX(1);
+  }
+
+  .schedule-day.is-visible,
+  .schedule-day.is-visible::before,
+  .schedule-day.is-visible .schedule-date,
+  .schedule-day.is-visible .session {
+    animation: none;
+  }
+}
