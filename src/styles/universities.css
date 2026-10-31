@@ -130,11 +130,9 @@
 
 .university img {
   display: block;
-
-  height: 150px;
+  height: 120px;
   width: auto;
-  max-width: 200px;
-
+  max-width: none;
   object-fit: contain;
 
   filter: grayscale(1);
@@ -146,15 +144,8 @@
 }
 
 .university:hover img {
-  filter: none;
+  filter: grayscale(0);
   opacity: 1;
-}
-
-.university-name {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-body);
-  white-space: nowrap;
 }
 
 /* =========================================
@@ -206,13 +197,18 @@
 
   .universities-label {
     margin-bottom: 2.5rem;
+    padding: 0 1.5rem;
   }
 
   .universities-label h2 {
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
   }
-
+  
   .universities-group {
     gap: 2rem;
     padding-right: 2rem;
