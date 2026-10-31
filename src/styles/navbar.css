@@ -64,7 +64,7 @@
 .navbar-links a:hover,
 .navbar-social:hover,
 .navbar-links a.active {
-  color: var(--color-flag-green);
+  color: green;
 }
 
 /* RIGHT SIDE */
