@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { client } from '../sanityClient'
 import { SCHEDULE_QUERY } from '../queries'
 import ScrollVelocity from '../components/ScrollVelocity'
+import Speakers from './Speakers'
 import '../styles/schedule.css'
 
 function formatDate(iso) {
@@ -106,6 +107,8 @@ export default function Schedule() {
         />
       </div> */}
 
+      <h1 className="schedule-title">What to Expect</h1>
+
       <main className="schedule">
         {sessions.length > 0 && (
           <div className="schedule-header">
@@ -131,6 +134,10 @@ export default function Schedule() {
 
         {sessions.length === 0 && <p>Schedule TBC</p>}
       </main>
+
+      <h1 className="speakers-title">Confirmed Speakers</h1>
+
+      <Speakers/>
     </>
   )
 }

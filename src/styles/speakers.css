@@ -1,65 +1,123 @@
+
+/* =========================================
+   SPEAKERS SECTION
+========================================= */
+
 .speakers {
-  padding: calc(var(--section-space) + 3rem) var(--gutter) var(--section-space);
+  padding: 8rem var(--gutter) 15rem;
   background: var(--color-cream);
 }
 
-/* Auto-fit wraps the cards onto new rows, so any number of speakers works */
+/* =========================================
+   SPEAKERS GRID
+========================================= */
+
 .speakers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 3.5rem 2rem;
-  max-width: 1100px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  column-gap: 2rem;
+  row-gap: 2.5rem;
+
+  max-width: 1200px;
   margin: 0 auto;
-  justify-items: center;
-  text-align: center;
+
+  text-align: left;
+  align-items: start;
 }
+
+/* =========================================
+   INDIVIDUAL SPEAKER
+========================================= */
 
 .speaker {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 280px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.8rem;
+
+  min-width: 0;
+  max-width: none;
+
   opacity: 0;
   transform: translateY(30px);
 }
 
-.speakers.is-visible .speaker {
-  animation: speaker-rise 0.9s ease-out both;
-}
+/* =========================================
+   SPEAKER PHOTO
+========================================= */
 
 .speaker-photo {
-  width: 180px;
-  height: 180px;
+  width: 120px;
+  height: 120px;
+
+  flex: 0 0 65px;
+
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 6px 20px rgba(19, 41, 30, 0.12);
+  object-position: center;
+
+  border: 2px solid var(--color-red-deep);
+  padding: 3px;
+
+  background: var(--color-cream);
+  box-sizing: border-box;
+
+  margin: 0;
+  box-shadow: none;
+}
+
+/* =========================================
+   SPEAKER INFORMATION
+========================================= */
+
+.speaker-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  flex: 1;
+  min-width: 0;
 }
 
 .speaker-name {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 1.7rem;
-  line-height: 1.2;
-  color: var(--color-green);
-  margin: 0 0 0.4rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-weight: 700;
+
+  font-size: 0.95rem;
+  line-height: 1.3;
+
+  color: var(--color-body);
+  margin: 0 0 0.25rem;
 }
 
 .speaker-role {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-red-deep);
-  margin: 0 0 1rem;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  font-weight: 400;
+  line-height: 1.4;
+
+  letter-spacing: normal;
+  text-transform: none;
+
+  color: #777;
+  margin: 0;
 }
 
 .speaker-bio {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: var(--color-body);
-  margin: 0;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.5;
+
+  color: #777;
+  margin: 0.4rem 0 0;
 }
+
+/* =========================================
+   SPEAKERS LABEL
+   Preserved from your original CSS
+========================================= */
 
 .speakers-label {
   display: flex;
@@ -87,6 +145,14 @@
   background: var(--color-red-deep);
 }
 
+/* =========================================
+   SCROLL ANIMATIONS
+========================================= */
+
+/* .speakers.is-visible .speaker {
+  animation: speaker-rise 0.9s ease-out both;
+} */
+
 .speakers.is-visible .speakers-label {
   animation: speakers-label-in 1.4s ease-out 0.2s both;
 }
@@ -95,11 +161,24 @@
   animation: speakers-label-rule 1s ease-out 1s forwards;
 }
 
+@keyframes speaker-rise {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes speakers-label-in {
   from {
     opacity: 0;
     transform: translateY(12px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -112,46 +191,108 @@
   }
 }
 
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 1000px) {
+  .speakers-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2rem;
+    row-gap: 2rem;
+  }
+
+  .speakers {
+    padding: 2rem var(--gutter) 4rem;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+  .speakers {
+    padding: 1.5rem var(--gutter-mobile) 4rem;
+  }
+
+  .speakers-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+
+    max-width: 420px;
+  }
+
+  .speaker {
+    gap: 1rem;
+  }
+
+  .speaker-photo {
+    width: 60px;
+    height: 60px;
+    flex-basis: 60px;
+  }
+
+  .speaker-name {
+    font-size: 1rem;
+  }
+
+  .speaker-role {
+    font-size: 0.85rem;
+  }
+
+  .speaker-bio {
+    font-size: 0.85rem;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
 @media (prefers-reduced-motion: reduce) {
+  .speaker,
   .speakers-label {
     opacity: 1;
+    transform: none;
   }
 
   .speakers-label-rule {
     width: 120px;
   }
 
+  .speakers.is-visible .speaker,
   .speakers.is-visible .speakers-label,
   .speakers.is-visible .speakers-label-rule {
     animation: none;
   }
 }
 
+/* Each speaker fades in as they enter the viewport */
+.speaker {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 0.8rem;
 
-@keyframes speaker-rise {
+  min-width: 0;
+  max-width: none;
+
+  animation: speaker-scroll-fade linear both;
+  animation-timeline: view();
+  animation-range: entry -20% cover 35%;
+}
+
+@keyframes speaker-scroll-fade {
   from {
     opacity: 0;
     transform: translateY(30px);
+    filter: blur(8px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@media (max-width: 800px) {
-  .speakers {
-    padding: calc(var(--section-space-mobile) + 2rem) var(--gutter-mobile) var(--section-space-mobile);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .speaker {
-    opacity: 1;
-    transform: none;
-  }
-
-  .speakers.is-visible .speaker {
-    animation: none;
+    filter: blur(0);
   }
 }

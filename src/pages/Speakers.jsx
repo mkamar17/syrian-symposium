@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react'
 import { client, urlFor } from '../sanityClient'
 import { SPEAKERS_QUERY } from '../queries'
@@ -10,15 +11,25 @@ export default function Speakers() {
   const ref = useRef(null)
 
   useEffect(() => {
+    let cancelled = false
+
     client
       .fetch(SPEAKERS_QUERY)
-      .then(setSpeakers)
-      .catch((err) => setError(err.message))
+      .then((data) => {
+        if (!cancelled) setSpeakers(data || [])
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message)
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
-  // Re-run once speakers load, because the section only exists after that
   useEffect(() => {
     if (!ref.current) return
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -28,7 +39,9 @@ export default function Speakers() {
       },
       { threshold: 0.2 }
     )
+
     observer.observe(ref.current)
+
     return () => observer.disconnect()
   }, [speakers.length])
 
@@ -41,28 +54,37 @@ export default function Speakers() {
       id="speakers"
       className={`speakers ${visible ? 'is-visible' : ''}`}
     >
-      <div className="speakers-label">
-        <h2>Confirmed speakers</h2>
-        <span className="speakers-label-rule" />
-      </div>
-
       <div className="speakers-grid">
         {speakers.map((speaker, i) => (
           <article
             key={speaker._id}
             className="speaker"
-            style={{ animationDelay: `${0.2 + i * 0.15}s` }}
+            style={{ animationDelay: `${0.2 + i * 0.08}s` }}
           >
             {speaker.photo && (
               <img
                 className="speaker-photo"
-                src={urlFor(speaker.photo).width(400).height(400).url()}
+                src={urlFor(speaker.photo)
+                  .width(200)
+                  .height(200)
+                  .fit('crop')
+                  .url()}
                 alt={speaker.name}
+                loading="lazy"
               />
             )}
-            <h3 className="speaker-name">{speaker.name}</h3>
-            {speaker.role && <p className="speaker-role">{speaker.role}</p>}
-            {speaker.bio && <p className="speaker-bio">{speaker.bio}</p>}
+
+            <div className="speaker-info">
+              <h3 className="speaker-name">{speaker.name}</h3>
+
+              {speaker.role && (
+                <p className="speaker-role">{speaker.role}</p>
+              )}
+
+              {speaker.bio && (
+                <p className="speaker-bio">{speaker.bio}</p>
+              )}
+            </div>
           </article>
         ))}
       </div>
