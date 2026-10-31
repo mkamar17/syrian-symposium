@@ -6,8 +6,20 @@ export default {
     {
       name: 'heading',
       title: 'Headline',
-      type: 'string',
+      type: 'array',
+      description: 'Select words and click B to make them bold',
       validation: (Rule) => Rule.required(),
+      of: [
+        {
+          type: 'block',
+          styles: [{ title: 'Normal', value: 'normal' }],
+          lists: [],
+          marks: {
+            decorators: [{ title: 'Bold', value: 'strong' }],
+            annotations: [],
+          },
+        },
+      ],
     },
     {
       name: 'text',
@@ -15,7 +27,7 @@ export default {
       type: 'text',
       rows: 3,
     },
-        {
+    {
       name: 'images',
       title: 'Images',
       type: 'array',
@@ -44,7 +56,7 @@ export default {
       name: 'buttonLink',
       title: 'Button link',
       type: 'string',
-      description: 'For a section on this page, use #schedule. For another page, use /history.',
+      description: 'For a section on this page, use #schedule. For another page, use /schedule.',
     },
     {
       name: 'order',

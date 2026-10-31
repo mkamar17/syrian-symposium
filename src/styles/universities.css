@@ -1,0 +1,259 @@
+
+/* =========================================
+   UNIVERSITIES SECTION
+========================================= */
+
+.universities {
+  width: 100%;
+  padding: 6rem 0;
+  background: var(--color-cream);
+  overflow: hidden;
+}
+
+/* =========================================
+   HEADING
+========================================= */
+
+.universities-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 3.5rem;
+  padding: 0 1.5rem;
+
+  text-align: center;
+
+  /* Initially hidden */
+  opacity: 0;
+}
+
+/* Same blur-in effect as Discussion */
+.universities.is-visible .universities-label {
+  animation: label-in 1.6s ease-out 0.2s both;
+}
+
+.universities-label h2 {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 500;
+  font-size: 3.5rem;
+  letter-spacing: 0.01em;
+  color: var(--color-body);
+  margin: 0 0 0.75rem;
+}
+
+/* =========================================
+   HEADING BLUR-IN ANIMATION
+========================================= */
+
+@keyframes label-in {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    letter-spacing: 0.4em;
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    letter-spacing: 0.25em;
+  }
+}
+
+/* =========================================
+   LOGO VIEWPORT
+========================================= */
+
+.universities-viewport {
+  width: 100%;
+  overflow: hidden;
+
+  /* Fade the edges of the carousel */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
+}
+
+/* =========================================
+   INFINITE SCROLLING TRACK
+========================================= */
+
+.universities-track {
+  display: flex;
+  width: max-content;
+
+  animation: universities-scroll 50s linear infinite;
+  will-change: transform;
+}
+
+/*
+  Gradual hover slowdown is handled in Universities.jsx
+  using the Web Animations API.
+*/
+
+/* =========================================
+   LOGO GROUPS
+========================================= */
+
+.universities-group {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  gap: 4rem;
+  padding-right: 4rem;
+}
+
+/* =========================================
+   INDIVIDUAL UNIVERSITIES
+========================================= */
+
+.university {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.university img {
+  display: block;
+  height: 120px;
+  width: auto;
+  max-width: none;
+  object-fit: contain;
+
+  filter: grayscale(1);
+  opacity: 0.75;
+
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.university:hover img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* =========================================
+   INFINITE ANIMATION
+========================================= */
+
+@keyframes universities-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 1000px) {
+  .universities {
+    padding: 5rem 0;
+  }
+
+  .universities-group {
+    gap: 3rem;
+    padding-right: 3rem;
+  }
+
+  .university img {
+    height: 55px;
+    max-width: 160px;
+  }
+
+  .universities-track {
+    animation-duration: 22s;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .universities {
+    padding: 4rem 0;
+  }
+
+  .universities-label {
+    margin-bottom: 2.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .universities-label h2 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+  }
+  
+  .universities-group {
+    gap: 2rem;
+    padding-right: 2rem;
+  }
+
+  .university img {
+    height: 42px;
+    max-width: 130px;
+  }
+
+  .university-name {
+    font-size: 0.85rem;
+  }
+
+  .universities-track {
+    animation-duration: 18s;
+  }
+}
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .universities-label {
+    opacity: 1;
+    filter: none;
+  }
+
+  .universities.is-visible .universities-label {
+    animation: none;
+  }
+
+  .universities-track {
+    animation: none;
+    will-change: auto;
+  }
+
+  .universities-viewport {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+
+  .universities-group[aria-hidden='true'] {
+    display: none;
+  }
+}

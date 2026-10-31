@@ -1,43 +1,185 @@
+
+/* MAIN NAVBAR */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2rem;
+
+  padding: 1rem clamp(20px, 4vw, 60px);
+
   background: var(--color-cream);
   border-bottom: 1px solid var(--color-sage-dark);
 }
 
+/* LOGO */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navbar-logo-img {
+  height: 60px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+/* NAVIGATION */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
 .navbar-links {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.navbar-logo-img {
-  height: 30px;
-  width: auto;
-  display: block;
+.navbar-links li {
+  white-space: nowrap;
 }
 
 .navbar-links a,
 .navbar-social {
   color: var(--color-green);
   text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  transition: color 0.3s ease;
 }
 
 .navbar-links a:hover,
-.navbar-social:hover {
-  color: var(--color-flag-green);
+.navbar-social:hover,
+.navbar-links a.active {
+  color: green;
+}
+
+/* RIGHT SIDE */
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-shrink: 0;
 }
 
 .navbar-social {
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+}
+
+/* HAMBURGER BUTTON - HIDDEN ON DESKTOP */
+.navbar-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  background: none;
+  border: none;
+  padding: 6px;
+
+  color: var(--color-green);
+  cursor: pointer;
+}
+
+/* MEDIUM SCREENS / TABLETS */
+@media (max-width: 1100px) {
+  .navbar {
+    padding: 0.9rem 2rem;
+  }
+
+  .navbar-logo-img {
+    height: 50px;
+  }
+
+  .navbar-links {
+    gap: 1rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.8rem;
+    letter-spacing: 0.03em;
+  }
+}
+
+/* MOBILE AND SMALL TABLETS */
+@media (max-width: 850px) {
+  .navbar {
+    padding: 0.8rem 1.5rem;
+  }
+
+  .navbar-logo-img {
+    height: 48px;
+  }
+
+  .navbar-toggle {
+    display: flex;
+  }
+
+  /* Dropdown navigation */
+  .navbar-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    display: none;
+
+    background: var(--color-cream);
+    border-bottom: 1px solid var(--color-sage-dark);
+
+    padding: 1.5rem;
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  .navbar-nav.navbar-nav-open {
+    display: block;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .navbar-links a {
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+  }
+
+  .navbar-actions {
+    gap: 1.2rem;
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 0.7rem 1rem;
+  }
+
+  .navbar-logo-img {
+    height: 42px;
+  }
+
+  .navbar-social {
+    font-size: 1.1rem;
+  }
+
+  .navbar-actions {
+    gap: 0.8rem;
+  }
 }

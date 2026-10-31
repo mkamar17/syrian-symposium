@@ -26,7 +26,7 @@ export default function DiscussionSection({ section }) {
       {section.heading && (
         <div className="discussion-label">
           <h2>{section.heading}</h2>
-          <span className="discussion-label-rule" />
+          
         </div>
       )}
 

@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { client } from '../sanityClient'
 import { SCHEDULE_QUERY } from '../queries'
 import ScrollVelocity from '../components/ScrollVelocity'
+import Speakers from './Speakers'
 import '../styles/schedule.css'
 
 function formatDate(iso) {
@@ -95,7 +96,7 @@ export default function Schedule() {
 
   return (
     <>
-      <div className="schedule-title-band">
+      {/* <div className="schedule-title-band">
         <ScrollVelocity
           texts={['Syrian Symposium Schedule 2027']}
           velocity={30}
@@ -104,9 +105,22 @@ export default function Schedule() {
           numCopies={4}
           gap={400}
         />
-      </div>
+      </div> */}
+
+      <h1 className="schedule-title">What to Expect</h1>
 
       <main className="schedule">
+        {sessions.length > 0 && (
+          <div className="schedule-header">
+            <p className="column-label">Date</p>
+            <div className="session-header">
+              <p className="column-label">Session &amp; speakers</p>
+              <p className="column-label">Time</p>
+              <p className="column-label">Venue</p>
+            </div>
+          </div>
+        )}
+
         {Object.entries(days).map(([date, items], index) => (
           <ScheduleDay
             key={date}
@@ -120,6 +134,10 @@ export default function Schedule() {
 
         {sessions.length === 0 && <p>Schedule TBC</p>}
       </main>
+
+      <h1 className="speakers-title">Projected Speakers</h1>
+
+      <Speakers/>
     </>
   )
 }

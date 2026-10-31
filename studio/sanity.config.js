@@ -28,6 +28,8 @@ export default defineConfig({
             S.documentTypeListItem('highlightCard').title('Highlight cards'),
             S.documentTypeListItem('session').title('Schedule items'),
             S.documentTypeListItem('speaker').title('Speakers'),
+            S.documentTypeListItem('university').title('Universities'),
+            S.documentTypeListItem('joinPage').title('Sponsorship Page'),
           ]),
     }),
     visionTool(),
