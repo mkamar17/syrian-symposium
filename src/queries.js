@@ -71,14 +71,15 @@ export const SCHEDULE_QUERY = `*[_type == "session"] | order(date asc, order asc
   speakers[]->{ name, role }
 }`
 
+
 export const JOIN_PAGE_QUERY = `*[_type == "joinPage"][0] {
   heading,
   intro,
-  steps,
-  contactEmail,
-  instagramUrl,
-  linkedinUrl
+  backgroundImage,
+  buttonLabel,
+  pitchUrl
 }`
+
 
 export const UNIVERSITIES_QUERY = `*[_type == "university"] | order(order asc, name asc) {
   _id,

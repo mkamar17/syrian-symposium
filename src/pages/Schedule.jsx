@@ -135,7 +135,7 @@ export default function Schedule() {
         {sessions.length === 0 && <p>Schedule TBC</p>}
       </main>
 
-      <h1 className="speakers-title">Confirmed Speakers</h1>
+      <h1 className="speakers-title">Projected Speakers</h1>
 
       <Speakers/>
     </>

@@ -1,84 +1,109 @@
+
 import { useEffect, useState } from 'react'
-import { client } from '../sanityClient'
+import { PortableText } from '@portabletext/react'
+import { client, urlFor } from '../sanityClient'
 import { JOIN_PAGE_QUERY } from '../queries'
 import '../styles/join.css'
+
+const portableTextComponents = {
+  marks: {
+    strong: ({ children }) => <strong>{children}</strong>,
+    em: ({ children }) => <em>{children}</em>,
+    link: ({ value, children }) => {
+      const href = value?.href
+
+      if (!href) return <>{children}</>
+
+      const isExternal = /^https?:\/\//i.test(href)
+
+      return (
+        <a
+          href={href}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}
+        >
+          {children}
+        </a>
+      )
+    },
+  },
+}
 
 export default function Join() {
   const [page, setPage] = useState(null)
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    client.fetch(JOIN_PAGE_QUERY).then(setPage).catch((err) => setError(err.message))
+    let cancelled = false
+
+    client
+      .fetch(JOIN_PAGE_QUERY)
+      .then((data) => {
+        if (!cancelled) setPage(data)
+      })
+      .catch((err) => {
+        if (!cancelled) setError(err.message)
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   if (error) return <p>Error: {error}</p>
   if (!page) return null
 
+  const backgroundUrl = page.backgroundImage
+    ? urlFor(page.backgroundImage)
+        .width(2000)
+        .quality(85)
+        .url()
+    : null
+
   return (
-    <>
+    <main className="join-page">
       <section className="join-hero">
-        <h1 className="join-heading">{page.heading || 'Join us'}</h1>
-        {page.intro && <p className="join-intro">{page.intro}</p>}
-      </section>
 
-      <section className="join-body">
-        <div className="join-info">
-          {page.steps?.length > 0 && (
-            <>
-              <h2 className="join-label">How to join</h2>
-              <ol className="join-steps">
-                {page.steps.map((step, i) => (
-                  <li key={i}>{step}</li>
-                ))}
-              </ol>
-            </>
+        {backgroundUrl && (
+          <div
+            className="join-background"
+            style={{
+              backgroundImage: `url("${backgroundUrl}")`,
+            }}
+            aria-hidden="true"
+          />
+        )}
+
+        <div className="join-overlay" aria-hidden="true" />
+
+        <div className="join-content">
+          <h1 className="join-heading">
+            {page.heading || 'Become a Sponsor'}
+          </h1>
+          
+
+          {page.pitchUrl && (
+            <a
+              className="join-button"
+              href={page.pitchUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {page.buttonLabel || 'View Pitch'}
+            </a>
           )}
 
-          <h2 className="join-label">Get in touch</h2>
-          {page.contactEmail && (
-            <p className="join-email">
-              <a href={`mailto:${page.contactEmail}`}>{page.contactEmail}</a>
-            </p>
+          {Array.isArray(page.intro) && page.intro.length > 0 && (
+            <div className="join-intro">
+              <PortableText
+                value={page.intro}
+                components={portableTextComponents}
+              />
+            </div>
           )}
-
-          <div className="join-social">
-            {page.instagramUrl && (
-              <a href={page.instagramUrl} target="_blank" rel="noopener noreferrer">
-                Instagram
-              </a>
-            )}
-            {page.linkedinUrl && (
-              <a href={page.linkedinUrl} target="_blank" rel="noopener noreferrer">
-                LinkedIn
-              </a>
-            )}
-          </div>
         </div>
 
-        {/* Dummy form: stops the page reloading, but doesn't send anything yet */}
-        <form className="join-form" onSubmit={(e) => e.preventDefault()}>
-          <h2 className="join-form-title">Send us a message</h2>
-
-          <label className="join-field">
-            <span>Name</span>
-            <input type="text" name="name" required />
-          </label>
-
-          <label className="join-field">
-            <span>Email</span>
-            <input type="email" name="email" required />
-          </label>
-
-          <label className="join-field">
-            <span>Message</span>
-            <textarea name="message" rows={5} required />
-          </label>
-
-          <button type="submit" className="join-submit">
-            Send
-          </button>
-        </form>
       </section>
-    </>
+    </main>
   )
 }

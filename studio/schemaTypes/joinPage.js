@@ -1,19 +1,70 @@
+
 export default {
   name: 'joinPage',
-  title: 'Join page',
+  title: 'Sponsorship Page',
   type: 'document',
   fields: [
-    { name: 'heading', title: 'Heading', type: 'string', initialValue: 'Join us' },
-    { name: 'intro', title: 'Intro', type: 'text', rows: 3 },
     {
-      name: 'steps',
-      title: 'How to join',
-      type: 'array',
-      description: 'One item per step, in order',
-      of: [{ type: 'string' }],
+      name: 'heading',
+      title: 'Main Heading',
+      type: 'string',
+      initialValue: 'Become a Sponsor',
     },
-    { name: 'contactEmail', title: 'Contact email', type: 'string' },
-    { name: 'instagramUrl', title: 'Instagram URL', type: 'url' },
-    { name: 'linkedinUrl', title: 'LinkedIn URL', type: 'url' },
+    {
+  name: 'intro',
+  title: 'Subtitle',
+  type: 'array',
+  of: [
+    {
+      type: 'block',
+      styles: [],
+      lists: [],
+      marks: {
+        decorators: [
+          { title: 'Bold', value: 'strong' },
+          { title: 'Italic', value: 'em' },
+        ],
+        annotations: [
+          {
+            name: 'link',
+            title: 'Hyperlink',
+            type: 'object',
+            fields: [
+              {
+                name: 'href',
+                title: 'URL',
+                type: 'url',
+                validation: (Rule) =>
+                  Rule.uri({
+                    scheme: ['http', 'https', 'mailto'],
+                  }),
+              },
+            ],
+          },
+        ],
+      },
+    },
+  ],
+},
+    {
+      name: 'backgroundImage',
+      title: 'Hero Background Image',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+    },
+    {
+      name: 'buttonLabel',
+      title: 'Button Text',
+      type: 'string',
+      initialValue: 'View Pitch',
+    },
+    {
+      name: 'pitchUrl',
+      title: 'Pitch Deck URL',
+      type: 'url',
+      description: 'Link to your sponsorship pitch PDF or presentation.',
+    },
   ],
 }

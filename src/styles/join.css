@@ -1,165 +1,211 @@
-.join-hero {
-  padding: var(--section-space-mobile) var(--gutter) 3rem;
-  background: var(--color-cream);
-  text-align: center;
+
+/* FULL SCREEN HERO */
+
+.join-page {
+  width: 100%;
 }
+
+.join-hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem var(--gutter) 5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--color-green);
+  text-align: center;
+  isolation: isolate;
+}
+
+/* BACKGROUND IMAGE */
+
+.join-background {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  transform: scale(1.05);
+}
+
+/* DARK FADED OVERLAY */
+
+.join-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+
+  background: rgba(5, 12, 10, 0.65);
+}
+
+/* CENTRED CONTENT */
+
+.join-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 1100px;
+
+  animation: join-fade-in 1.4s ease-out both;
+}
+
+/* MAIN HEADING */
 
 .join-heading {
   font-family: var(--font-display);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  line-height: 1.1;
-  color: var(--color-green);
-  margin: 0 0 1.25rem;
+
+  font-size: clamp(3.5rem, 7vw, 7rem);
+  line-height: 1.05;
+
+  color: #ffffff;
+
+  margin: 0 0 2.5rem;
 }
+
+/* SUBTITLE */
 
 .join-intro {
-  max-width: 640px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: var(--color-body);
-}
+  max-width: 700px;
 
-.join-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gutter);
-  align-items: start;
-  padding: 2rem var(--gutter) var(--section-space);
-  background: var(--color-cream);
-}
-
-.join-label {
   font-family: var(--font-body);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-body);
-  margin: 2.5rem 0 1rem;
-}
-
-.join-label:first-child {
-  margin-top: 0;
-}
-
-.join-steps {
-  padding-left: 1.25rem;
-  margin: 0;
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
   line-height: 1.7;
-  color: var(--color-body);
+
+  color: rgba(255, 255, 255, 0.9);
+
+  margin: 0 0 2.5rem;
 }
 
-.join-steps li {
-  margin-bottom: 0.75rem;
+/* VIEW PITCH BUTTON */
+
+.join-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.1rem 2.8rem;
+
+  background: var(--color-green);
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.join-email,
-.join-info a {
-  font-size: 1rem;
-  color: var(--color-green);
+.join-button:hover {
+  background: rgb(108, 173, 108);
+  border-color: rgb(108, 173, 108);
+  transform: translateY(-3px);
 }
 
-.join-social {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+/* FADE IN */
+
+@keyframes join-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
-.join-social a {
-  color: var(--color-green);
-  font-size: 0.95rem;
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .join-hero {
+    padding:
+      7rem var(--gutter-mobile)
+      4rem;
+  }
+
+  .join-heading {
+    font-size: clamp(3rem, 10vw, 4.5rem);
+  }
+
+  .join-intro {
+    font-size: 1rem;
+  }
+
+  .join-button {
+    padding: 1rem 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .join-content {
+    animation: none;
+  }
+
+  .join-button {
+    transition: none;
+  }
+}
+/* PORTABLE TEXT FORMATTING */
+
+.join-intro p {
+  margin: 0;
+}
+
+.join-intro p + p {
+  margin-top: 1rem;
+}
+
+/* BOLD */
+
+.join-intro strong {
+  font-weight: 700;
+  color: inherit;
+}
+
+/* ITALIC */
+
+.join-intro em {
+  font-style: italic;
+}
+
+/* HYPERLINKS */
+
+.join-intro a {
+  color: inherit;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
 
-.join-social a:hover {
-  color: var(--color-flag-red);
+.join-intro a:hover {
+  color: inherit;
 }
 
-.join-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  padding: 2.5rem;
-  background: var(--color-cream-deep);
-  border-radius: 4px;
-}
-
-.join-form-title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 500;
-  font-size: 2rem;
-  line-height: 1.2;
-  color: var(--color-green);
-  margin: 0 0 0.5rem;
-}
-
-.join-field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.join-field span {
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-body);
-}
-
-.join-field input,
-.join-field textarea {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  color: var(--color-body);
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-green);
-  padding: 0.75rem 0;
-  outline: none;
-  resize: vertical;
-}
-
-.join-field input:focus,
-.join-field textarea:focus {
-  border-bottom-color: var(--color-flag-red);
-}
-
-.join-submit {
-  align-self: flex-start;
-  padding: 0.9rem 2rem;
-  background: var(--color-green);
-  color: #ffffff;
-  border: none;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.join-submit:hover {
-  background: #0f1f17;
-}
-
-@media (max-width: 800px) {
-  .join-hero {
-    padding: var(--section-space-mobile) var(--gutter-mobile) 2rem;
-  }
-
-  .join-body {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 2rem var(--gutter-mobile) var(--section-space-mobile);
-  }
-
-  .join-form {
-    padding: 2rem 1.5rem;
-  }
+.join-button + .join-intro {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
 }
