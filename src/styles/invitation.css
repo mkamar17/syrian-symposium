@@ -182,7 +182,6 @@
   }
 }
 
-
 @media (max-width: 700px) {
   .invitation {
     grid-template-columns: 1fr;

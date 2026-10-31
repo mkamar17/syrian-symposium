@@ -10,6 +10,7 @@ import HomeIntro from '../components/HomeIntro'
 import Invitation from '../components/Invitation'
 import DiscussionSection from '../components/DiscussionSection'
 import Speakers from './Speakers'
+import Universities from '../components/Universities'
 
 export default function Home() {
   const [intro, setIntro] = useState(null)
@@ -42,7 +43,11 @@ export default function Home() {
       {invitations.map((invitation) => (
         <Invitation key={invitation._id} invitation={invitation} />
       ))}
+
+      <Universities />
       {/* <Speakers /> */}
+
+      
     </>
   )
 }

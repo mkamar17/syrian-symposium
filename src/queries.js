@@ -79,3 +79,10 @@ export const JOIN_PAGE_QUERY = `*[_type == "joinPage"][0] {
   instagramUrl,
   linkedinUrl
 }`
+
+export const UNIVERSITIES_QUERY = `*[_type == "university"] | order(order asc, name asc) {
+  _id,
+  name,
+  logo,
+  url
+}`
