@@ -22,6 +22,39 @@ export default {
   type: 'array',
   of: [{ type: 'image', options: { hotspot: true } }],
     },
+
+{
+  name: 'pastEventsImages',
+  title: 'Past Events Slideshow',
+  type: 'array',
+  of: [
+    {
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        {
+          name: 'alt',
+          title: 'Image Description',
+          type: 'string',
+        },
+      ],
+    },
+  ],
+  options: {
+    layout: 'grid',
+  },
+},
+{
+  name: 'pastEventsCaption',
+  title: 'Past Events Slideshow Caption',
+  type: 'text',
+  rows: 3,
+  description: 'A caption displayed beneath the entire slideshow.',
+},
+
+
     {
       name: 'milestones',
       title: 'History Timeline',

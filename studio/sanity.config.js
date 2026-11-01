@@ -30,6 +30,7 @@ export default defineConfig({
             S.documentTypeListItem('speaker').title('Speakers'),
             S.documentTypeListItem('university').title('Universities'),
             S.documentTypeListItem('joinPage').title('Sponsorship Page'),
+            S.documentTypeListItem('societyHistory').title('Society History'),
           ]),
     }),
     visionTool(),
