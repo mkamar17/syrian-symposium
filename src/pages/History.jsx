@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react'
 import { client, urlFor } from '../sanityClient'
 import { HISTORY_QUERY } from '../queries'
@@ -24,7 +25,7 @@ export default function History() {
   if (error) return <p>Could not load society history. Please try again later.</p>
   if (!history) return <p>Society history has not been added yet.</p>
 
-    const heroImage = history.heroImages?.[0]
+  const heroImage = history.heroImages?.[0]
 
   return (
     <>
@@ -37,19 +38,16 @@ export default function History() {
       )}
 
       <section className="history">
-        <Reveal>
-          <h1 className="history-title">{history.heading || 'Society history'}</h1>
-        </Reveal>
+        <h1 className="history-title">
+          {history.heading || 'Society history'}
+        </h1>
 
         {history.paragraphs?.map((paragraph, index) => (
-          <Reveal key={index} delay={index * 100}>
+          <Reveal key={index} delay={800 + index * 100}>
             <p className="history-text">{paragraph}</p>
           </Reveal>
         ))}
       </section>
-
-      
     </>
   )
 }
-            

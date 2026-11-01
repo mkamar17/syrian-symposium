@@ -1,53 +1,53 @@
-import { useEffect, useState } from 'react'
-import { client } from '../sanityClient'
-import {
-  HOME_INTRO_QUERY,
-  INVITATION_QUERY,
-  DISCUSSION_SECTION_QUERY,
-} from '../queries'
-import Hero from '../components/Hero'
-import HomeIntro from '../components/HomeIntro'
-import Invitation from '../components/Invitation'
-import DiscussionSection from '../components/DiscussionSection'
-import Speakers from './Speakers'
-import Universities from '../components/Universities'
 
-export default function Home() {
-  const [intro, setIntro] = useState(null)
-  const [invitations, setInvitations] = useState([])
-  const [discussion, setDiscussion] = useState(null)
-  const [error, setError] = useState(null)
+import { useEffect, useState } from 'react'
+import { client, urlFor } from '../sanityClient'
+import { HISTORY_QUERY } from '../queries'
+import Reveal from '../components/Reveal'
+import '../styles/history.css'
+
+export default function History() {
+  const [history, setHistory] = useState(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
-    Promise.all([
-      client.fetch(HOME_INTRO_QUERY),
-      client.fetch(INVITATION_QUERY),
-      client.fetch(DISCUSSION_SECTION_QUERY),
-    ])
-      .then(([introData, inviteData, discussionData]) => {
-        setIntro(introData)
-        setInvitations(inviteData)
-        setDiscussion(discussionData)
+    client
+      .fetch(HISTORY_QUERY)
+      .then((data) => setHistory(data))
+      .catch((err) => {
+        console.error('Error loading society history:', err)
+        setError(true)
       })
-      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
   }, [])
+
+  if (loading) return <p>Loading society history...</p>
+  if (error) return <p>Could not load society history. Please try again later.</p>
+  if (!history) return <p>Society history has not been added yet.</p>
+
+  const heroImage = history.heroImages?.[0]
 
   return (
     <>
-      <Hero />
-      {error && <p>Error: {error}</p>}
-      {intro && <HomeIntro heading={intro.heading} paragraphs={intro.paragraphs} />}
-      
-      {discussion && <DiscussionSection section={discussion} />}
+      {heroImage && (
+        <img
+          className="history-banner"
+          src={urlFor(heroImage).width(2000).url()}
+          alt={history.heading || 'Society history'}
+        />
+      )}
 
-      {invitations.map((invitation) => (
-        <Invitation key={invitation._id} invitation={invitation} />
-      ))}
+      <section className="history">
+        <h1 className="history-title">
+          {history.heading || 'Society history'}
+        </h1>
 
-      <Universities />
-      {/* <Speakers /> */}
-
-      
+        {history.paragraphs?.map((paragraph, index) => (
+          <Reveal key={index} delay={index * 100}>
+            <p className="history-text">{paragraph}</p>
+          </Reveal>
+        ))}
+      </section>
     </>
   )
 }

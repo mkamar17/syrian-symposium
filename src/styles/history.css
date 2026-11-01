@@ -1,19 +1,43 @@
+
 .history {
   box-sizing: border-box;
   width: 100%;
-  max-width: 64rem;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 2.5rem clamp(1.5rem, 6vw, 4rem) var(--section-space, 6rem);
+  padding: 5rem clamp(1.5rem, 6vw, 4rem) var(--section-space, 6rem);
   text-align: center;
 }
 
+/* HISTORY HEADING */
+
 .history-title {
   font-family: var(--font-display, serif);
-  font-style: italic;
+  font-style: normal;
   font-weight: 500;
   font-size: clamp(2.6rem, 5vw, 3.6rem);
-  margin: 0 0 2.5rem;
+  color: #000000;
+  margin: 0 0 5rem;
+
+  animation: history-heading-fade 1.5s ease-out both;
 }
+
+/* HEADING BLUR + FADE */
+
+@keyframes history-heading-fade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* HISTORY PARAGRAPHS */
 
 .history-text {
   font-size: clamp(1rem, 1.4vw, 1.15rem);
@@ -23,11 +47,14 @@
   hyphens: auto;
 }
 
-/* Hidden and lowered until the component is scrolled into view */
+/* ORIGINAL SCROLL REVEAL ANIMATION */
+
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.9s ease-out, transform 0.9s ease-out;
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
 }
 
 .reveal.is-visible {
@@ -35,14 +62,8 @@
   transform: none;
 }
 
-/* Show everything straight away for people who've asked for less motion */
-@media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
+/* HISTORY BANNER */
+
 .history-banner {
   display: block;
   width: 100vw;
@@ -52,8 +73,27 @@
   object-position: center;
 }
 
+/* MOBILE */
+
 @media (max-width: 800px) {
   .history-banner {
     height: 220px;
+  }
+}
+
+/* REDUCED MOTION */
+
+@media (prefers-reduced-motion: reduce) {
+  .history-title {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
