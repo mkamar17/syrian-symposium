@@ -1,0 +1,139 @@
+
+.past-slideshow {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.past-slideshow-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #eaeaea;
+  isolation: isolate;
+}
+
+.past-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.07);
+  filter: blur(5px);
+  transition:
+    opacity 1.3s ease,
+    transform 5.5s ease,
+    filter 1.3s ease;
+  pointer-events: none;
+}
+
+.past-slide.is-active {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  z-index: 1;
+}
+
+.past-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Image counter */
+
+.past-slideshow-counter {
+  position: absolute;
+  bottom: 25px;
+  right: 30px;
+  z-index: 3;
+  color: white;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.past-slideshow-counter span {
+  opacity: 0.6;
+}
+
+/* Controls */
+
+.past-slideshow-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.past-slideshow-arrow {
+  border: none;
+  background: transparent;
+  color: #111;
+  font-size: 1.8rem;
+  font-weight: 300;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.past-slideshow-arrow:hover {
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+.past-slideshow-progress {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.past-slideshow-dot {
+  width: 24px;
+  height: 3px;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: #d1d1d1;
+  cursor: pointer;
+  transition:
+    width 0.5s ease,
+    background 0.5s ease;
+}
+
+.past-slideshow-dot.is-active {
+  width: 48px;
+  background: var(--color-green, #456b54);
+}
+
+@media (max-width: 800px) {
+  .past-slideshow-stage {
+    aspect-ratio: 4 / 3;
+  }
+
+  .past-slideshow-controls {
+    gap: 1.5rem;
+  }
+
+  .past-slideshow-counter {
+    right: 18px;
+    bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .past-slide {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+
+  .past-slideshow-arrow,
+  .past-slideshow-dot {
+    transition: none;
+  }
+}
