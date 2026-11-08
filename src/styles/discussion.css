@@ -182,3 +182,8 @@
     transition: none;
   }
 }
+
+.discussion-item:nth-child(2) .discussion-icon {
+  transform: scale(1.2);
+  opacity: 0.90;
+}
