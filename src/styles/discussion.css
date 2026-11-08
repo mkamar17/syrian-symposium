@@ -12,17 +12,26 @@
   margin: 0 auto;
 }
 
-/* Hidden until the section is visible, then each item rises in turn */
+
+
+/* OBJECTIVES FADE IN */
+
 .discussion-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(32px);
+
+  transition:
+    opacity 0.9s ease-out,
+    transform 0.9s ease-out;
 }
 
-.discussion.is-visible .discussion-item {
-  animation: discussion-rise 0.9s ease-out both;
+.discussion-item.item-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .discussion-icon {
@@ -62,7 +71,7 @@
   font-family: var(--font-display);
   font-style: normal;
   font-weight: 500;
-  font-size: 3.5rem;
+  font-size: clamp(2.6rem, 5vw, 3.6rem);
   letter-spacing: 0.01em;
   margin-bottom: 3.5rem;
   color: var(--color-body);
@@ -88,6 +97,9 @@
   }
 }
 
+
+/* MOBILE AND TABLET */
+
 @media (max-width: 800px) {
   .discussion {
     padding: 3rem var(--gutter-mobile);
@@ -95,14 +107,32 @@
 
   .discussion-grid {
     grid-template-columns: 1fr;
-    gap: 3.5rem;
+    gap: 2.5rem;
   }
 
   .discussion-icon {
-    width: 110px;
-    height: 110px;
+    width: 85px;
+    height: 85px;
+    margin-bottom: 1rem;
+  }
+
+  .discussion-title {
+    font-size: clamp(1.4rem, 4vw, 1.8rem);
+    line-height: 1.25;
+    margin-bottom: 0.75rem;
+  }
+
+  .discussion-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    max-width: 320px;
+  }
+
+  .discussion-label {
+    margin-bottom: 2.5rem;
   }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   .discussion-item {
@@ -145,16 +175,10 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .discussion-label {
+  .discussion-item,
+  .discussion-item.item-visible {
     opacity: 1;
-  }
-
-  .discussion.is-visible .discussion-label,
-  .discussion.is-visible .discussion-label-rule {
-    animation: none;
-  }
-
-  .discussion-label-rule {
-    width: 120px;
+    transform: none;
+    transition: none;
   }
 }

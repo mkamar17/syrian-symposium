@@ -172,7 +172,6 @@
 .speakers-tbc {
   font-family: var(--font-body);
   font-size: 2rem;
-  font-weight: 500;
   color: var(--color-body);
 
   text-align: center;
@@ -322,5 +321,23 @@
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
+  }
+}
+
+
+/* MATCH PROJECTED SPEAKERS TO OUR HISTORY ON MOBILE */
+
+@media (max-width: 800px) {
+  .speakers .speakers-title,
+  .speakers-title {
+    font-size: clamp(2.6rem, 5vw, 3.6rem);
+  }
+}
+
+
+@media (max-width: 800px) {
+  .speakers-tbc {
+    font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+    line-height: 1.4;
   }
 }

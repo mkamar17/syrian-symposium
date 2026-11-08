@@ -9,5 +9,6 @@ import eventDetails from './eventDetails'
 import scheduleItem from './scheduleItem'
 import joinPage from './joinPage'
 import university from './university'
+import pastEvent from './pastEvent'
 
-export const schemaTypes = [speaker, homeIntro, highlightCard, invitation, discussionSection, footerSettings, societyHistory, eventDetails, scheduleItem, joinPage, university]
+export const schemaTypes = [speaker, homeIntro, highlightCard, invitation, discussionSection, footerSettings, societyHistory, eventDetails, scheduleItem, joinPage, university, pastEvent]

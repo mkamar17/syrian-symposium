@@ -19,17 +19,20 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <div className="navbar-logo">
-
+      
+    <Link
+      to="/"
+      className="navbar-logo"
+      aria-label="Go to homepage"
+      onClick={() => setMenuOpen(false)}
+    >
       <img
-
         src={logo}
         alt="Syrian Symposium logo"
         className="navbar-logo-img"
-
       />
+    </Link>
 
-      </div>
 
       <nav
         id="navbar-navigation"
@@ -37,16 +40,24 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <ul className="navbar-links">
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          
+{links.map((link) => (
+  <li key={link.to}>
+    <Link
+      to={link.to}
+      className={
+        location.pathname === link.to ? 'active' : ''
+      }
+      onClick={() => setMenuOpen(false)}
+      aria-current={
+        location.pathname === link.to ? 'page' : undefined
+      }
+    >
+      {link.label}
+    </Link>
+  </li>
+))}
+
         </ul>
       </nav>
 
