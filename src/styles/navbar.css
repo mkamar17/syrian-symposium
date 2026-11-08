@@ -61,11 +61,27 @@
   transition: color 0.3s ease;
 }
 
-.navbar-links a:hover,
-.navbar-social:hover,
+
+/* DEFAULT NAVBAR LINKS */
+.navbar-links a {
+  color: var(--color-green);
+}
+
+/* HOVER */
+.navbar-links a:hover {
+  color: green;
+}
+
+/* ACTIVE PAGE - STAYS GREEN */
 .navbar-links a.active {
   color: green;
 }
+
+/* LINKEDIN HOVER */
+.navbar-social:hover {
+  color: green;
+}
+
 
 /* RIGHT SIDE */
 .navbar-actions {

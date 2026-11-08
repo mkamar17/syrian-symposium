@@ -27,10 +27,16 @@ export const HISTORY_QUERY = `*[_type == "societyHistory"][0] {
     year,
     title,
     description
-  }, 
-  pastEventsImages,
-  pastEventsCaption
+  }
 }`
+
+export const PAST_EVENTS_QUERY = `*[_type == "pastEvent"] | order(order asc, title asc) {
+  _id,
+  title,
+  image,
+  order
+}`
+
 
 export const INVITATION_QUERY = `*[_type == "invitation"] | order(order asc) {
   _id,

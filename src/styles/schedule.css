@@ -374,3 +374,48 @@
     filter: none;
   }
 }
+
+
+/* =========================================
+   MOBILE TYPOGRAPHY
+========================================= */
+
+@media (max-width: 800px) {
+
+  /* Match Our History heading */
+  .schedule-title,
+  .speakers-title {
+    font-size: clamp(2.6rem, 5vw, 3.6rem);
+  }
+
+  /* Session headings */
+  .session-title {
+    font-size: clamp(1.15rem, 3.5vw, 1.4rem);
+    line-height: 1.3;
+    margin-bottom: 0.6rem;
+  }
+
+  /* Speaker names, times and venues */
+  .session-speaker,
+  .session-time,
+  .session-venue {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.35rem;
+  }
+
+  /* Date */
+  .schedule-date {
+    font-size: 0.9rem;
+  }
+
+  /* Reduce spacing between sessions */
+  .schedule-sessions {
+    gap: 2rem;
+  }
+
+  /* Reduce spacing around each schedule day */
+  .schedule-day {
+    padding: 2rem 0;
+  }
+}

@@ -31,6 +31,7 @@ export default defineConfig({
             S.documentTypeListItem('university').title('Universities'),
             S.documentTypeListItem('joinPage').title('Sponsorship Page'),
             S.documentTypeListItem('societyHistory').title('Society History'),
+            S.documentTypeListItem('pastEvent').title('Past Events'),
           ]),
     }),
     visionTool(),

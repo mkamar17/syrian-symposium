@@ -3,33 +3,33 @@ import { useEffect, useState } from 'react'
 import { urlFor } from '../sanityClient'
 import '../styles/pastEventsSlideshow.css'
 
-export default function PastEventsSlideshow({ images = [] }) {
+export default function PastEventsSlideshow({ events = [] }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [paused, setPaused] = useState(false)
 
   useEffect(() => {
     setActiveIndex(0)
-  }, [images])
+  }, [events])
 
   useEffect(() => {
-    if (images.length <= 1 || paused) return
+    if (events.length <= 1 || paused) return
 
     const interval = setInterval(() => {
-      setActiveIndex((previous) => (previous + 1) % images.length)
+      setActiveIndex((previous) => (previous + 1) % events.length)
     }, 5000)
 
     return () => clearInterval(interval)
-  }, [images.length, paused])
+  }, [events.length, paused])
 
-  if (!images.length) return null
+  if (!events.length) return null
 
   const next = () => {
-    setActiveIndex((previous) => (previous + 1) % images.length)
+    setActiveIndex((previous) => (previous + 1) % events.length)
   }
 
   const previous = () => {
     setActiveIndex(
-      (previous) => (previous - 1 + images.length) % images.length
+      (previous) => (previous - 1 + events.length) % events.length
     )
   }
 
@@ -45,53 +45,64 @@ export default function PastEventsSlideshow({ images = [] }) {
         }
       }}
       aria-label="Past events photo gallery"
+      role="region"
+      aria-roledescription="carousel"
     >
       <div className="past-slideshow-stage">
-        {images.map((image, index) => (
+        {events.map((event, index) => (
           <div
-            key={image._key || index}
+            key={event._id}
             className={`past-slide ${
               index === activeIndex ? 'is-active' : ''
             }`}
             aria-hidden={index !== activeIndex}
           >
             <img
-              src={urlFor(image).width(1800).auto('format').url()}
-              alt={image.alt || `Past event photograph ${index + 1}`}
+              src={urlFor(event.image)
+                .width(1800)
+                .auto('format')
+                .url()}
+              alt={event.image?.alt || event.title}
               loading={index === 0 ? 'eager' : 'lazy'}
             />
+
+            <div className="past-slide-caption">
+              <h3>{event.title}</h3>
+            </div>
           </div>
         ))}
 
         <div className="past-slideshow-counter">
           {String(activeIndex + 1).padStart(2, '0')}
           <span> / </span>
-          {String(images.length).padStart(2, '0')}
+          {String(events.length).padStart(2, '0')}
         </div>
       </div>
 
-      {images.length > 1 && (
+      {events.length > 1 && (
         <div className="past-slideshow-controls">
           <button
             className="past-slideshow-arrow"
             onClick={previous}
-            aria-label="Previous photograph"
+            aria-label="Previous event"
             type="button"
           >
             ←
           </button>
 
           <div className="past-slideshow-progress">
-            {images.map((image, index) => (
+            {events.map((event, index) => (
               <button
-                key={image._key || index}
+                key={event._id}
                 type="button"
                 className={`past-slideshow-dot ${
                   index === activeIndex ? 'is-active' : ''
                 }`}
                 onClick={() => setActiveIndex(index)}
-                aria-label={`Show photograph ${index + 1}`}
-                aria-current={index === activeIndex ? 'true' : undefined}
+                aria-label={`Show ${event.title}`}
+                aria-current={
+                  index === activeIndex ? 'true' : undefined
+                }
               />
             ))}
           </div>
@@ -99,7 +110,7 @@ export default function PastEventsSlideshow({ images = [] }) {
           <button
             className="past-slideshow-arrow"
             onClick={next}
-            aria-label="Next photograph"
+            aria-label="Next event"
             type="button"
           >
             →

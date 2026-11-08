@@ -42,7 +42,7 @@
 }
 
 .footer-linkedin:hover {
-  color: var(--color-flag-red);
+  color: green;
 }
 
 @media (max-width: 800px) {

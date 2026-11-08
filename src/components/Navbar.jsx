@@ -19,17 +19,20 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <Link
-        to="/"
-        className="navbar-logo"
-        onClick={() => setMenuOpen(false)}
-      >
-        <img
-          src={logo}
-          alt="Syrian Symposium logo"
-          className="navbar-logo-img"
-        />
-      </Link>
+      
+    <Link
+      to="/"
+      className="navbar-logo"
+      aria-label="Go to homepage"
+      onClick={() => setMenuOpen(false)}
+    >
+      <img
+        src={logo}
+        alt="Syrian Symposium logo"
+        className="navbar-logo-img"
+      />
+    </Link>
+
 
       <nav
         id="navbar-navigation"
@@ -37,25 +40,30 @@ export default function Navbar() {
         aria-label="Main navigation"
       >
         <ul className="navbar-links">
-          {links.map((link) => (
-            <li key={link.to}>
-              <Link
-                to={link.to}
-                // className={
-                //   location.pathname === link.to ? 'active' : ''
-                // }
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          
+{links.map((link) => (
+  <li key={link.to}>
+    <Link
+      to={link.to}
+      className={
+        location.pathname === link.to ? 'active' : ''
+      }
+      onClick={() => setMenuOpen(false)}
+      aria-current={
+        location.pathname === link.to ? 'page' : undefined
+      }
+    >
+      {link.label}
+    </Link>
+  </li>
+))}
+
         </ul>
       </nav>
 
       <div className="navbar-actions">
         <a
-          href="https://www.linkedin.com/in/nour-samman-b1ab15269/"
+          href="https://www.linkedin.com/in/syrian-symposium-5a1b1a448/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Follow us on LinkedIn"
