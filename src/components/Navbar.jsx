@@ -55,7 +55,7 @@ export default function Navbar() {
 
       <div className="navbar-actions">
         <a
-          href="https://www.linkedin.com/in/nour-samman-b1ab15269/"
+          href="https://www.linkedin.com/in/syrian-symposium-5a1b1a448/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Follow us on LinkedIn"
