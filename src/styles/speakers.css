@@ -161,6 +161,34 @@
   animation: speakers-label-rule 1s ease-out 1s forwards;
 }
 
+/* =========================================
+   SPEAKERS TBC
+========================================= */
+
+.speakers.speakers-empty {
+  padding: 5rem var(--gutter) 5rem;
+}
+
+.speakers-tbc {
+  font-family: var(--font-body);
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--color-body);
+
+  text-align: center;
+  margin: 0;
+
+  animation: speaker-scroll-fade linear both;
+  animation-timeline: view();
+  animation-range: entry -20% cover 35%;
+}
+
+@media (max-width: 600px) {
+  .speakers.speakers-empty {
+    padding: 2rem var(--gutter-mobile) 4rem;
+  }
+}
+
 @keyframes speaker-rise {
   from {
     opacity: 0;

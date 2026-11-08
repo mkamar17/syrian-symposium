@@ -19,17 +19,17 @@ export default function Navbar() {
 
   return (
     <header className="navbar">
-      <Link
-        to="/"
-        className="navbar-logo"
-        onClick={() => setMenuOpen(false)}
-      >
-        <img
-          src={logo}
-          alt="Syrian Symposium logo"
-          className="navbar-logo-img"
-        />
-      </Link>
+      <div className="navbar-logo">
+
+      <img
+
+        src={logo}
+        alt="Syrian Symposium logo"
+        className="navbar-logo-img"
+
+      />
+
+      </div>
 
       <nav
         id="navbar-navigation"
@@ -41,9 +41,6 @@ export default function Navbar() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                // className={
-                //   location.pathname === link.to ? 'active' : ''
-                // }
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}
