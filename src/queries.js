@@ -33,6 +33,7 @@ export const HISTORY_QUERY = `*[_type == "societyHistory"][0] {
 export const PAST_EVENTS_QUERY = `*[_type == "pastEvent"] | order(order asc, title asc) {
   _id,
   title,
+  description,
   image,
   order
 }`
