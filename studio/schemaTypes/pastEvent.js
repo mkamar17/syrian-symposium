@@ -13,6 +13,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+  name: 'description',
+  title: 'Event Description',
+  type: 'text',
+  rows: 3,
+  description: 'Displayed underneath the event title in the slideshow.',
+},
+    {
       name: 'image',
       title: 'Event Image',
       type: 'image',
