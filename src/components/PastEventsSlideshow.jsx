@@ -21,7 +21,7 @@ export default function PastEventsSlideshow({ events = [] }) {
       setActiveIndex(
         (previous) => (previous + 1) % events.length
       )
-    }, 5000)
+    }, 10000)
 
     return () => clearInterval(interval)
   }, [events.length, paused])
