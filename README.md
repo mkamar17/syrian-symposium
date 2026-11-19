@@ -1,6 +1,6 @@
 # Syrian Symposium 2027
 
-A professional, responsive website developed for **Syrian Symposium 2027**, a one-day conference taking place on **30 January 2027 at King's College London**.
+A professional, responsive website developed for the **Syrian Symposium 2027**, a one-day conference taking place on **30 January 2027 at King's College London**.
 
 **Live Website:** [Visit Syrian Symposium 2027](https://syriansymposium.netlify.app/)
 
